@@ -1,17 +1,14 @@
 {
     "env": {
         "es6": true,
-        "node": true
+        "node": true,
+        "commonjs": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 2016
+        "ecmaVersion": 2017
     },
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
         "linebreak-style": [
             "error",
             "unix"
@@ -23,6 +20,7 @@
         "semi": [
             "error",
             "never"
-        ]
+        ],
+        "no-console": "off"
     }
 }
