@@ -1,4 +1,4 @@
 module.exports = {
   controllerDir: 'controllers',
-  controllerDirPath: __dirname 
+  controllerDirPath: __dirname
 }

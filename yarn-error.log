@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js uninstall rewire
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js lint --fix
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -15,7 +15,7 @@ Platform:
 
 npm manifest: 
   {
-    "name": "dassy",
+    "name": "dasjs",
     "version": "1.0.0",
     "main": "src/index.js",
     "license": "MIT",
@@ -28,14 +28,22 @@ npm manifest:
       "debug": "^4.0.0",
       "documentation": "^8.1.2",
       "eslint": "^5.5.0",
+      "eslint-config-standard": "^12.0.0",
+      "eslint-plugin-import": "^2.14.0",
+      "eslint-plugin-node": "^7.0.1",
+      "eslint-plugin-promise": "^4.0.1",
+      "eslint-plugin-standard": "^4.0.0",
       "express": "^4.16.3",
       "jest": "^23.6.0",
-      "rewire": "^4.0.1",
       "winston": "^3.1.0"
     },
     "engines": {
       "node": "9.11.1"
-    }
+    },
+    "files": [
+      "src/",
+      "LICENSE"
+    ]
   }
 
 yarn manifest: 
@@ -88,35 +96,21 @@ Lockfile:
     dependencies:
       acorn "^5.0.0"
   
-  acorn-jsx@^3.0.0:
-    version "3.0.1"
-    resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-3.0.1.tgz#afdf9488fb1ecefc8348f6fb22f464e32a58b36b"
-    dependencies:
-      acorn "^3.0.4"
-  
   acorn-jsx@^4.1.1:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-4.1.1.tgz#e8e41e48ea2fe0c896740610ab6a4ffd8add225e"
     dependencies:
       acorn "^5.0.3"
   
-  acorn@^3.0.4:
-    version "3.3.0"
-    resolved "http://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
-  
-  acorn@^5.0.0, acorn@^5.0.3, acorn@^5.2.1, acorn@^5.5.0, acorn@^5.5.3, acorn@^5.6.0:
+  acorn@^5.0.0, acorn@^5.0.3, acorn@^5.2.1, acorn@^5.5.3, acorn@^5.6.0:
     version "5.7.3"
     resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
-  
-  ajv-keywords@^2.1.0:
-    version "2.1.1"
-    resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
   
   ajv-keywords@^3.0.0:
     version "3.2.0"
     resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.2.0.tgz#e86b819c602cf8821ad637413698f1dec021847a"
   
-  ajv@^5.2.3, ajv@^5.3.0:
+  ajv@^5.3.0:
     version "5.5.2"
     resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
     dependencies:
@@ -292,7 +286,7 @@ Lockfile:
     version "1.8.0"
     resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   
-  babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
+  babel-code-frame@^6.26.0:
     version "6.26.0"
     resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.26.0.tgz#63fd43f7dc1e3bb7ce35947db8fe369a3f58c74b"
     dependencies:
@@ -1229,10 +1223,6 @@ Lockfile:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/character-reference-invalid/-/character-reference-invalid-1.1.2.tgz#21e421ad3d84055952dab4a43a04e73cd425d3ed"
   
-  chardet@^0.4.0:
-    version "0.4.2"
-    resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.4.2.tgz#b5473b33dc97c424e5d98dc87d55d4d8a29c8bf2"
-  
   chardet@^0.7.0:
     version "0.7.0"
     resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
@@ -1464,7 +1454,7 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   
-  cross-spawn@^5.0.1, cross-spawn@^5.1.0:
+  cross-spawn@^5.0.1:
     version "5.1.0"
     resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
     dependencies:
@@ -1837,12 +1827,9 @@ Lockfile:
     optionalDependencies:
       source-map "~0.6.1"
   
-  eslint-scope@^3.7.1:
-    version "3.7.3"
-    resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.3.tgz#bb507200d3d17f60247636160b4826284b108535"
-    dependencies:
-      esrecurse "^4.1.0"
-      estraverse "^4.1.1"
+  eslint-config-standard@^12.0.0:
+    version "12.0.0"
+    resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-12.0.0.tgz#638b4c65db0bd5a41319f96bba1f15ddad2107d9"
   
   eslint-scope@^4.0.0:
     version "4.0.0"
@@ -1858,49 +1845,6 @@ Lockfile:
   eslint-visitor-keys@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#3f3180fb2e291017716acb4c9d6d5b5c34a6a81d"
-  
-  eslint@^4.19.1:
-    version "4.19.1"
-    resolved "http://registry.npmjs.org/eslint/-/eslint-4.19.1.tgz#32d1d653e1d90408854bfb296f076ec7e186a300"
-    dependencies:
-      ajv "^5.3.0"
-      babel-code-frame "^6.22.0"
-      chalk "^2.1.0"
-      concat-stream "^1.6.0"
-      cross-spawn "^5.1.0"
-      debug "^3.1.0"
-      doctrine "^2.1.0"
-      eslint-scope "^3.7.1"
-      eslint-visitor-keys "^1.0.0"
-      espree "^3.5.4"
-      esquery "^1.0.0"
-      esutils "^2.0.2"
-      file-entry-cache "^2.0.0"
-      functional-red-black-tree "^1.0.1"
-      glob "^7.1.2"
-      globals "^11.0.1"
-      ignore "^3.3.3"
-      imurmurhash "^0.1.4"
-      inquirer "^3.0.6"
-      is-resolvable "^1.0.0"
-      js-yaml "^3.9.1"
-      json-stable-stringify-without-jsonify "^1.0.1"
-      levn "^0.3.0"
-      lodash "^4.17.4"
-      minimatch "^3.0.2"
-      mkdirp "^0.5.1"
-      natural-compare "^1.4.0"
-      optionator "^0.8.2"
-      path-is-inside "^1.0.2"
-      pluralize "^7.0.0"
-      progress "^2.0.0"
-      regexpp "^1.0.1"
-      require-uncached "^1.0.3"
-      semver "^5.3.0"
-      strip-ansi "^4.0.0"
-      strip-json-comments "~2.0.1"
-      table "4.0.2"
-      text-table "~0.2.0"
   
   eslint@^5.5.0:
     version "5.5.0"
@@ -1945,13 +1889,6 @@ Lockfile:
       table "^4.0.3"
       text-table "^0.2.0"
   
-  espree@^3.5.4:
-    version "3.5.4"
-    resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.4.tgz#b0f447187c8a8bed944b815a660bddf5deb5d1a7"
-    dependencies:
-      acorn "^5.5.0"
-      acorn-jsx "^3.0.0"
-  
   espree@^4.0.0:
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/espree/-/espree-4.0.0.tgz#253998f20a0f82db5d866385799d912a83a36634"
@@ -1967,7 +1904,7 @@ Lockfile:
     version "4.0.1"
     resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   
-  esquery@^1.0.0, esquery@^1.0.1:
+  esquery@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/esquery/-/esquery-1.0.1.tgz#406c51658b1f5991a5f9b62b1dc25b00e3e5c708"
     dependencies:
@@ -2099,14 +2036,6 @@ Lockfile:
   extend@^3.0.0, extend@~3.0.2:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
-  
-  external-editor@^2.0.4:
-    version "2.2.0"
-    resolved "http://registry.npmjs.org/external-editor/-/external-editor-2.2.0.tgz#045511cfd8d133f3846673d1047c154e214ad3d5"
-    dependencies:
-      chardet "^0.4.0"
-      iconv-lite "^0.4.17"
-      tmp "^0.0.33"
   
   external-editor@^3.0.0:
     version "3.0.3"
@@ -2441,7 +2370,7 @@ Lockfile:
     version "2.4.0"
     resolved "https://registry.yarnpkg.com/globals-docs/-/globals-docs-2.4.0.tgz#f2c647544eb6161c7c38452808e16e693c2dafbb"
   
-  globals@^11.0.1, globals@^11.7.0:
+  globals@^11.7.0:
     version "11.7.0"
     resolved "https://registry.yarnpkg.com/globals/-/globals-11.7.0.tgz#a583faa43055b1aca771914bf68258e2fc125673"
   
@@ -2647,7 +2576,7 @@ Lockfile:
     dependencies:
       safer-buffer ">= 2.1.2 < 3"
   
-  iconv-lite@^0.4.17, iconv-lite@^0.4.24, iconv-lite@^0.4.4:
+  iconv-lite@^0.4.24, iconv-lite@^0.4.4:
     version "0.4.24"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
     dependencies:
@@ -2658,10 +2587,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/ignore-walk/-/ignore-walk-3.0.1.tgz#a83e62e7d272ac0e3b551aaa82831a19b69f82f8"
     dependencies:
       minimatch "^3.0.4"
-  
-  ignore@^3.3.3:
-    version "3.3.10"
-    resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.10.tgz#0a97fb876986e8081c631160f8f9f389157f0043"
   
   ignore@^4.0.6:
     version "4.0.6"
@@ -2692,25 +2617,6 @@ Lockfile:
   ini@^1.3.3, ini@~1.3.0:
     version "1.3.5"
     resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
-  
-  inquirer@^3.0.6:
-    version "3.3.0"
-    resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-3.3.0.tgz#9dd2f2ad765dcab1ff0443b491442a20ba227dc9"
-    dependencies:
-      ansi-escapes "^3.0.0"
-      chalk "^2.0.0"
-      cli-cursor "^2.1.0"
-      cli-width "^2.0.0"
-      external-editor "^2.0.4"
-      figures "^2.0.0"
-      lodash "^4.3.0"
-      mute-stream "0.0.7"
-      run-async "^2.2.0"
-      rx-lite "^4.0.8"
-      rx-lite-aggregates "^4.0.8"
-      string-width "^2.1.0"
-      strip-ansi "^4.0.0"
-      through "^2.3.6"
   
   inquirer@^6.1.0:
     version "6.2.0"
@@ -2988,7 +2894,7 @@ Lockfile:
     dependencies:
       is-unc-path "^1.0.0"
   
-  is-resolvable@^1.0.0, is-resolvable@^1.1.0:
+  is-resolvable@^1.1.0:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/is-resolvable/-/is-resolvable-1.1.0.tgz#fb18f87ce1feb925169c9a407c19318a3206ed88"
   
@@ -3419,7 +3325,7 @@ Lockfile:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
   
-  js-yaml@^3.10.0, js-yaml@^3.12.0, js-yaml@^3.7.0, js-yaml@^3.9.1:
+  js-yaml@^3.10.0, js-yaml@^3.12.0, js-yaml@^3.7.0:
     version "3.12.0"
     resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.0.tgz#eaed656ec8344f10f527c6bfa1b6e2244de167d1"
     dependencies:
@@ -3641,7 +3547,7 @@ Lockfile:
     version "4.7.0"
     resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   
-  lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0:
+  lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5:
     version "4.17.10"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   
@@ -4638,10 +4544,6 @@ Lockfile:
       extend-shallow "^3.0.2"
       safe-regex "^1.1.0"
   
-  regexpp@^1.0.1:
-    version "1.1.0"
-    resolved "https://registry.yarnpkg.com/regexpp/-/regexpp-1.1.0.tgz#0e3516dd0b7904f413d2d4193dce4618c3a689ab"
-  
   regexpp@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/regexpp/-/regexpp-2.0.0.tgz#b2a7534a85ca1b033bcf5ce9ff8e56d4e0755365"
@@ -4883,12 +4785,6 @@ Lockfile:
     version "0.1.15"
     resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   
-  rewire@^4.0.1:
-    version "4.0.1"
-    resolved "https://registry.yarnpkg.com/rewire/-/rewire-4.0.1.tgz#ba1100d400a9da759fe599fc6e0233f0879ed6da"
-    dependencies:
-      eslint "^4.19.1"
-  
   rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1:
     version "2.6.2"
     resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
@@ -4904,16 +4800,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.3.0.tgz#0371ab4ae0bdd720d4166d7dfda64ff7a445a6c0"
     dependencies:
       is-promise "^2.1.0"
-  
-  rx-lite-aggregates@^4.0.8:
-    version "4.0.8"
-    resolved "https://registry.yarnpkg.com/rx-lite-aggregates/-/rx-lite-aggregates-4.0.8.tgz#753b87a89a11c95467c4ac1626c4efc4e05c67be"
-    dependencies:
-      rx-lite "*"
-  
-  rx-lite@*, rx-lite@^4.0.8:
-    version "4.0.8"
-    resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
   
   rxjs@^6.1.0:
     version "6.3.2"
@@ -5335,17 +5221,6 @@ Lockfile:
     version "3.2.2"
     resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
   
-  table@4.0.2:
-    version "4.0.2"
-    resolved "https://registry.yarnpkg.com/table/-/table-4.0.2.tgz#a33447375391e766ad34d3486e6e2aedc84d2e36"
-    dependencies:
-      ajv "^5.2.3"
-      ajv-keywords "^2.1.0"
-      chalk "^2.1.0"
-      lodash "^4.17.4"
-      slice-ansi "1.0.0"
-      string-width "^2.1.1"
-  
   table@^4.0.3:
     version "4.0.3"
     resolved "http://registry.npmjs.org/table/-/table-4.0.3.tgz#00b5e2b602f1794b9acaf9ca908a76386a7813bc"
@@ -5383,7 +5258,7 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/text-hex/-/text-hex-1.0.0.tgz#69dc9c1b17446ee79a92bf5b884bb4b9127506f5"
   
-  text-table@^0.2.0, text-table@~0.2.0:
+  text-table@^0.2.0:
     version "0.2.0"
     resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   
@@ -5990,14 +5865,16 @@ Lockfile:
       yargs-parser "^7.0.0"
 
 Trace: 
-  Error: Command "uninstall" not found.
-      at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:87307:17
-      at Generator.next (<anonymous>)
-      at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
-      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:116:14
-      at new Promise (<anonymous>)
-      at new F (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:23451:28)
-      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:95:12
-      at runCommand (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:87312:22)
-      at Object.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:87412:14)
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c eslint src/ --fix
+  Directory: /Volumes/Personal/workspace/development/libs/dassy
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:180:13)
+      at maybeClose (internal/child_process.js:936:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
