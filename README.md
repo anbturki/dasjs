@@ -11,8 +11,13 @@ const router = require('dasjs').Router(app, __dirname) // the second paramter is
 router.get('/user', 'UserController@index')
 router.post('/user', 'UserController@create')
 router.put('/user/:id', 'UserController@update')
-router.delete('/user/:id', ({request}) => {
+router.delete('/user/:id', (request) => {
   const params = request.params // going to improve it
   // rest of code
+  return {
+    success: true
+  }
 })
+
+app.listen(3000)
 ```
