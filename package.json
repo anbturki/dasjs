@@ -1,8 +1,16 @@
 {
   "name": "dasjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/index.js",
   "license": "MIT",
+  "author": {
+    "name": "turki",
+    "email": "barakat.turki@gmail.com"
+  },
+  "markdown": "github",
+  "repository": {
+    "url": "https://github.com/barakat-turki/dasjs"
+  },
   "scripts": {
     "test": "jest",
     "lint": "eslint src/",
