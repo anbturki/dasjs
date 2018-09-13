@@ -18,6 +18,9 @@ const router = (expressInstance, controllerDirPath, controllerDir) => {
     },
     put (route, handler) {
       this.route(route, handler, ['put'])
+    },
+    delete (route, handler) {
+      this.route(route, handler, ['put'])
     }
   }
 }

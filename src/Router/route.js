@@ -133,7 +133,6 @@ const routeManager = function (expressInstance, controllerDirPath, controllerDir
    * @private
    */
   function getCallbackResponse (controller, method, context) {
-    console.log(context)
     let methodContent
     if (controller) {
       const ctrl = requireController(controller)
