@@ -25,6 +25,9 @@ router.delete('/user/:id', (request) => {
   }
 })
 
+// multi verbs for one route
+router.route('/post', (req, res) => {}, ['get', 'post])
+
 app.listen(3000)
 ```
 
