@@ -1,12 +1,18 @@
 # DasJs/Router
+
+it handles API routes.
+
+make your routes in one place, distribute your controllers.
+
 **NOTE**: this is not stable yet, you may face some issues cause it's still under development
-APIs routes Handler
+
 #### Usage Example
 ```js
 # server.js
 const express = require('express')
 const app = express()
-const router = require('dasjs').Router(app, __dirname) // the second paramter is for where the controllers directory is located
+const router = require('dasjs').Router(app, __dirname)
+// the second paramter is for where the controllers directory is located
 
 router.get('/user', 'UserController@index')
 router.post('/user', 'UserController@create')
@@ -20,4 +26,15 @@ router.delete('/user/:id', (request) => {
 })
 
 app.listen(3000)
+```
+
+and
+
+```js
+# controller/UserController.js
+module.exports = {
+  index (req, res, next) {},
+  async create (req, res) {}
+  // ... and so on
+}
 ```
