@@ -3,11 +3,12 @@ const path = require('path')
 const fs = require('fs')
 /**
  * it called to return a class Route after accept express instance
- * @method RouteManager
+ * @method routeManager
  * @param {Object} expressInstance - Express app instance
  * @param {String} controllerDirPath - the absolute path where the controllers directory is located
  * @param {String} controllerDir - a name of directory that holds controllers - the default is controllers
  * @returns {Route class}
+ * @private
  */
 const routeManager = function (expressInstance, controllerDirPath, controllerDir) {
   config.controllerDir = controllerDir || config.controllerDir
@@ -21,14 +22,14 @@ const routeManager = function (expressInstance, controllerDirPath, controllerDir
   isControllerExists()
   /**
    * handle incoming request
+   * @kind Class
    * @class Route
    * @param {String} route - matched route
    * @param {String|Function} handler - a callback function that will be invoked one the route is matchs
    * @param {Array} verbs - request verb/method one route myight has many diffrent verbs
    * @example
-   * ```js
    * const route = new Route('/post', 'PostController@create', ['post'])
-   * ```
+   * @private
    */
   function Route (route, handler, verbs = ['get']) {
     validateRoute(route)
@@ -61,6 +62,7 @@ const routeManager = function (expressInstance, controllerDirPath, controllerDir
    * @param {String|Function} handler - a string or function, which will be the callback
    * for the http route
    * @returns {void}
+   * @private
    */
   function validateHandler (handler) {
     if (!['function', 'string'].includes(typeof handler)) {
@@ -73,6 +75,7 @@ const routeManager = function (expressInstance, controllerDirPath, controllerDir
    * @method validateVerbs
    * @param {Array} verbs - HTTP methods [GET,POST,PUT,DELETE,PATCH,OPTIONS,HEAD]
    * @returns {void}
+   * @private
    */
   function validateVerbs (verbs) {
     if (!Array.isArray(verbs)) {
@@ -80,11 +83,12 @@ const routeManager = function (expressInstance, controllerDirPath, controllerDir
     }
   }
   /**
- * it split both method and controller name if the handler is a string
- * @method splitHandler
- * @param {String|Function} handler - if it is a string
- * @returns {Object}
- */
+  * it split both method and controller name if the handler is a string
+  * @method splitHandler
+  * @param {String|Function} handler - if it is a string
+  * @returns {Object}
+  * @private
+  */
   function splitHandler (handler) {
     let method
     let controller
@@ -106,46 +110,46 @@ const routeManager = function (expressInstance, controllerDirPath, controllerDir
 
   /**
   * execute and handle incoming requests and spreed routes
- */
+  * @private
+  */
   function executeRoutes () {
     const self = this
     // iterate over all routes,s verbs
     this.verbs.forEach(verb => {
-      expressInstance[verb](self.route, async (request, response) => {
-        const context = {
-          request,
-          response
-        }
-        const methodContent = getCallbackResponse(self.controller, self.method, context)
-        handleCallbackResponse(methodContent, response)
+      expressInstance[verb](self.route, function () {
+        const methodContent = getCallbackResponse(self.controller, self.method, arguments)
+        handleCallbackResponse(methodContent, arguments[1])
       })
     })
   }
   /**
- * it gets controller method value or callback returned value
- * @method getCallbackResponse
- * @param {String|Undefined} controller - controller name from string handler or undefined if the handled is a callback
- * @param {String|Function} method - if the is a callback it will be the callback,
- * if the handler is a string it will be method name then it will be called from its controller.
- * @param {Object} context - this is an object that holds prorprties that will pass to callback handler
- * proprties like response, request, and maybe auth
- */
+   * it gets controller method value or callback returned value
+   * @method getCallbackResponse
+   * @param {String|Undefined} controller - controller name from string handler or undefined if the handled is a callback
+   * @param {String|Function} method - if the is a callback it will be the callback,
+   * if the handler is a string it will be method name then it will be called from its controller.
+   * @param {Object} context - this is an object that holds prorprties that will pass to callback handler
+   * proprties like response, request, and maybe auth
+   * @private
+   */
   function getCallbackResponse (controller, method, context) {
+    console.log(context)
     let methodContent
     if (controller) {
       const ctrl = requireController(controller)
       if (typeof ctrl[method] !== 'function') {
         throw new Error(`the ${method} method is not exists in ${getControllersDir()}/${controller}.js`)
       }
-      methodContent = ctrl[method](context)
+      methodContent = ctrl[method](...context)
     } else {
-      methodContent = method(context)
+      methodContent = method(...context)
     }
     return methodContent
   }
   /**
  * @method requireController
  * @param {String} controller
+ * @private
  */
   function requireController (controller) {
     const ctrlPath = path.resolve(getControllersDir(), `${controller}.js`)
@@ -158,6 +162,7 @@ const routeManager = function (expressInstance, controllerDirPath, controllerDir
   }
   /**
  * @method isControllerExists
+ * @private
  */
   function isControllerExists () {
     const ctrlPath = getControllersDir()
@@ -168,6 +173,7 @@ const routeManager = function (expressInstance, controllerDirPath, controllerDir
   }
   /**
   * @method getControllersDir
+  * @private
   */
   function getControllersDir () {
     const ctrlPath = path.resolve(config.controllerDirPath, config.controllerDir)
@@ -177,9 +183,10 @@ const routeManager = function (expressInstance, controllerDirPath, controllerDir
   * @method handleCallbackResponse
   * @param {*} callbackContent
   * @param {*} response
+  * @private
  */
   async function handleCallbackResponse (callbackContent, response) {
-    if (callbackContent.then) {
+    if (callbackContent && callbackContent.then) {
       try {
         const content = await callbackContent
         response.send(content)
