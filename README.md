@@ -1,17 +1,15 @@
 # DasJs/Router
 
-add more features to express routes
+**NOTE**: this is not stable yet, you may face some issues cause it's still under development.
 
-it helps you to modulate express routes.  `router.post('/user', 'UserController@create')`, without needs to require controllers everywhere.
+Add more features to Express routes.
 
-make your routes in one place, distribute your controllers.
+It helps you to modulate express routes.  `router.post('/user', 'UserController@create')`, without needs to require controllers everywhere.
 
 ## Installation
 ```bash
 npm install dasjs --save
 ```
-
-**NOTE**: this is not stable yet, you may face some issues cause it's still under development
 
 #### Usage Example
 ```js
