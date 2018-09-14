@@ -1,6 +1,21 @@
 const routeManager = require('./Route')
-const router = (expressInstance, controllerDirPath, controllerDir) => {
-  const Route = routeManager(expressInstance, controllerDirPath, controllerDir)
+const config = require('../config')
+const fs = require('fs')
+const path = require('path')
+const router = (expressInstance, controllerDirPath, options = {}) => {
+  if (!controllerDirPath) {
+    throw new Error('please enter the root path of your project, to be able to access the controllers directory')
+  }
+  config.controllerDir = options.controllerDir || config.controllerDir
+  config.controllerDirPath = controllerDirPath
+  const ctrlPath = path.resolve(config.controllerDirPath, config.controllerDir)
+  const isDirExists = fs.existsSync(ctrlPath)
+  if (!isDirExists) {
+    fs.mkdir(ctrlPath, (err) => {
+      if (err) throw new Error(err)
+    })
+  }
+  const Route = routeManager(expressInstance)
   return {
     /**
      * @param {String} route - matchs endpoint

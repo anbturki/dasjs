@@ -10,12 +10,7 @@ const fs = require('fs')
  * @returns {Route class}
  * @private
  */
-const routeManager = function (expressInstance, controllerDirPath, controllerDir) {
-  config.controllerDir = controllerDir || config.controllerDir
-  config.controllerDirPath = controllerDirPath || __dirname
-  if (!controllerDirPath) {
-    throw new Error('please enter the root path of your project, to be able to access the controllers directory')
-  }
+const routeManager = function (expressInstance) {
   if (!expressInstance) {
     throw new Error('You must pass a express() instance')
   }
