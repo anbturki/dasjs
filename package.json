@@ -1,6 +1,6 @@
 {
   "name": "dasjs",
-  "version": "1.0.3",
+  "version": "1.2.0",
   "main": "src/index.js",
   "license": "MIT",
   "author": {
@@ -15,6 +15,9 @@
     "test": "jest",
     "lint": "eslint src/",
     "lint:fix": "yarn lint"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.3.0"
   },
   "devDependencies": {
     "debug": "^4.0.0",
