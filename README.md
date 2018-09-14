@@ -1,8 +1,15 @@
 # DasJs/Router
 
-it handles API routes.
+add more features to express routes
+
+it helps you to modulate express routes.  `router.post('/user', 'UserController@create')`, without needs to require controllers everywhere.
 
 make your routes in one place, distribute your controllers.
+
+## Installation
+```bash
+npm install dasjs --save
+```
 
 **NOTE**: this is not stable yet, you may face some issues cause it's still under development
 
