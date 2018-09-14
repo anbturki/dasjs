@@ -11,8 +11,14 @@ make your routes in one place, distribute your controllers.
 # server.js
 const express = require('express')
 const app = express()
+
+// the first paramter is express() instance
+/*
+* the second parameter is application root path where the controllers directory is located.
+* the controllers directory will be automatically created if it does not exists.
+* you can change the controllers directory name by passing the new name in the third parameter.
+*/
 const router = require('dasjs').Router(app, __dirname)
-// the second paramter is for where the controllers directory is located
 
 router.get('/user', 'UserController@index')
 router.post('/user', 'UserController@create')
@@ -34,7 +40,7 @@ app.listen(3000)
 and
 
 ```js
-# controller/UserController.js
+# controllers/UserController.js
 module.exports = {
   index (req, res, next) {},
   async create (req, res) {}
