@@ -17,7 +17,7 @@
     "lint:fix": "yarn lint"
   },
   "dependencies": {
-    "jsonwebtoken": "^8.3.0"
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "debug": "^4.0.0",
